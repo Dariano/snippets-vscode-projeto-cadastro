@@ -1,0 +1,94 @@
+{
+	"Gera estrutura sessao": {
+		"prefix": "ht-sessao",
+		"body": [
+					"<nova-sessao titulo=\"$titulo\" badge=\"{{$ctrl.${models}.length}}\">",
+					"    <dados-$componente",
+					"        $model=\"$ctrl.$model\"",
+					"        on-salvar=\"$ctrl.salvar($model)\"",
+					"        on-cancelar=\"$ctrl.cancelar()\"",
+					"        ng-if=\"$ctrl.mostrar${Componente}Form\"",
+					"    >",
+					"    </dados-$componente>",
+					"\t",
+					"    <lista-$componente",
+					"        ${models}=\"$ctrl.${models}\"",
+					"        on-novo=\"$ctrl.novo()\"",
+					"        on-editar=\"$ctrl.editar($model)\"",
+					"        on-remover=\"$ctrl.remover($model)\"",
+					"        esconder-botao-novo=\"$ctrl.mostrar${Componente}Form\"",
+					"        readonly=\"$ctrl.readonly\"",
+					"    >",
+					"    </lista-$componente>",
+					"</nova-sessao>"
+		],
+		"description": "Gera estrutura da Sessão, dados e lista."
+	},
+
+	"Gera estrutura dados": {
+		"prefix": "ht-dados",
+		"body": [
+					"<form name=\"$formulario\" angular-validator-submit=\"$ctrl.salvar($ctrl.$model); $formulario.reset()\"",
+					"    novalidate angular-validator>",
+					"    <fieldset>",
+					"        <div class=\"row\">",
+					"\t",         
+					"        </div>",
+					"        <div class=\"row\">",
+					"\t",        
+					"        </div>",
+					"    </fieldset>",
+					"\t",
+					"    <div class=\"btns-add\">",
+					"        <button type=\"button\"",
+					"            id=\"cancelar${Model}\"",
+					"            ng-click=\"$ctrl.cancelar() && $formulario.reset()\"",
+					"            class=\"info btn-danger\">cancelar</button>",
+					"\t",
+					"        <button type=\"submit\" id=\"adicionar${Model}\"",
+					"            class=\"info info-add\" >salvar</button>",
+					"    </div>",
+					"</form>"
+		],
+		"description": "Gera estrutura dados do formulário."
+	},
+
+	"Gera estrutura lista": {
+		"prefix": "ht-lista",
+		"body": [
+					"<div class=\"btns-add\">",
+					"    <button type=\"button\" ng-hide=\"$ctrl.escondeNovo\" ng-click=\"$ctrl.novo()\" ng-if=\"!$ctrl.readonly\" id=\"nova${id}\" class=\"info info-add\">novo</button>",
+					"</div>",
+					"<hr ng-if=\"!$ctrl.readonly\">",
+					"<table class=\"table table-striped tableListas\">",
+					"    <thead>",
+					"        <tr>",
+					"            <th>Tipo de Previdência</th>",
+					"            <th ng-if=\"!$ctrl.readonly\" class=\"centerText\" width=\"80\">Ações</th>",
+					"        </tr>",
+					"    </thead>",
+					"    <tbody>",
+					"        <tr ng-class=\"{ itemSelecionado : $model.modoEdicao }\"",
+					"            ng-repeat=\"(index, $model) in $ctrl.$models\">",
+					"            <td ng-bind=\"$model.propriedade\"> </td>",
+					"            <td ng-if=\"!$ctrl.readonly\" class=\"centerText\">",
+					"                <button class=\"btn btn-warning glyphicon glyphicon-edit\"",
+					"                      ng-disabled=\"$model.modoEdicao\"",
+					"                      title=\"Editar\"",
+					"                      ng-click=\"$ctrl.editar($model)\" ></button>",
+					"                <button class=\"btn btn-danger glyphicon glyphicon-trash\"",
+					"                      ng-disabled=\"$model.modoEdicao\"",
+					"                      title=\"Remover\"",
+					"                      ng-click=\"$ctrl.remover($model)\"></button>",
+					"            </td>",
+					"        </tr>",
+					"    </tbody>",
+					"</table>",
+					"<div class=\"subtitle listaVazia\" ng-show=\"$ctrl.$models.length==0\">",
+					"    Nenhuma $1 foi adicionada até o momento",
+					"</div>"
+		],
+		"description": "Gera estrutura lista."
+	}
+
+}
